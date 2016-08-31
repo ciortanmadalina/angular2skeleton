@@ -5,7 +5,9 @@ import MaskedInput from 'angular2-text-mask/dist/angular2TextMask';
   moduleId: module.id,
   selector: 'my-app',
   template: `
+    Mask : <input [textMask]="{mask: mask, placeholderChar:'1'}" [(ngModel)]="myModel" type="text"/>
     Mask : <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text"/>
+    {{myModel}}
   `,
   styleUrls: ['app.component.css'],
   directives: [MaskedInput]
