@@ -1,9 +1,9 @@
-Input text mask : https://github.com/text-mask/text-mask
+Input text mask : https://github.com/text-mask/text-mask  
 
-npm i angular2-text-mask --save
+npm i angular2-text-mask --save  
 
-System JS
-==========
+### System JS  
+```js
 const map: any = {
   'app' : 'app',
   'main': 'app/main.js',
@@ -22,3 +22,47 @@ const packages: any = {
   'angular2-in-memory-web-api' : {main : 'index.js', defaultExtension : 'js'},
   'angular2-text-mask': { defaultExtension: 'js' }
 };
+```
+
+### App module  
+
+```js
+import MaskedInput  from 'angular2-text-mask/dist/angular2TextMask';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  declarations: [
+    AppComponent,
+    MaskedInput
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+### Usage
+
+```js
+import { Component } from '@angular/core';
+import { NgControl } from '@angular/common';
+import MaskedInput from 'angular2-text-mask/dist/angular2TextMask';
+@Component({
+  moduleId: module.id,
+  selector: 'my-app',
+  template: `
+    Mask : <input [textMask]="{mask: mask, placeholderChar:'1'}" [(ngModel)]="myModel" type="text"/>
+    Mask : <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text"/>
+    {{myModel}}
+  `,
+  styleUrls: ['app.component.css'],
+  directives: [MaskedInput]
+})
+export class AppComponent {
+  public myModel = '';
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+}
+
+```
